@@ -1,0 +1,20 @@
+.panel{
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.panel-header{
+    background-color: #e67e22;
+    border: #ddd;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom: 1px solid transparent;
+}
+
+.container{
+    margin: 3% 10% 3% 10%;
+}
