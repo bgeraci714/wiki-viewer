@@ -4,15 +4,18 @@ import '../../index.css';
 
 
 
-const PanelHeader = ({ text }) => (
+const PanelHeader = ({ text, url, thumbnail }) => (
     <div className="panel-header">
-         {text}
+        <img src={thumbnail} alt=""/>
+        <a href={url}>{text}</a>
     </div>
 );
 
 
 PanelHeader.propTypes = {
-    text: PropTypes.string.isRequired
+    thumbnail: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
 }
 
 export default PanelHeader;

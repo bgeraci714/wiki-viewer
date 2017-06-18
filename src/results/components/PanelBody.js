@@ -4,7 +4,7 @@ import '../../index.css';
 
 const PanelBody = ({ text }) => (
     <div className="panel-body">
-        <p> {text} </p>
+        <span> {text} </span>
     </div>
 );
 

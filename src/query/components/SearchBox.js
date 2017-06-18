@@ -3,23 +3,30 @@ import axios from 'axios';
 import Input from './Input';
 import results from '../../results';
 import { updateQuery } from '../actions';
+
 const { actions } = results;
 
-
-
+//const holdQuery = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&limit=10&namespace=0&format=json`;
 const mapDispatchToProps = (dispatch) => {
     return {
         onChange: (query) => {
-            axios.get(`https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&limit=10&namespace=0&format=json`)
+          if (query){
+            axios.get('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch='
+              + query + '&format=json'
+            )
             .then((response)  => {
-                console.log(response);
-                // slice(1) so that we skip the search query
-                dispatch(actions.updateResults(response.data.slice(1)));
+              console.log(response.data.query.pages);
+
+              dispatch(actions.updateResults(response.data.query.pages));
             })
             .catch((error)=>{
                 console.log("There was an error: " + error);
             });
-            dispatch(updateQuery(query));
+          }
+          else {
+            dispatch(actions.updateResults({}));
+          }
+          dispatch(updateQuery(query));
 
         }
     }

@@ -1,0 +1,22 @@
+$phone-width: 560px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+
+@mixin small {
+  @media (max-device-width: #{$phone-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: #{$phone-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

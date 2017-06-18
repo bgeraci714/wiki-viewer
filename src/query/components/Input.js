@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormControl } from 'react-bootstrap';
+import '../../index.css'
 
 const SearchBox = ({onChange, value}) => (
+  <div className="input-container">
     <input
-        className="form-control"
+        className="input-form"
         placeholder="Search"
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onFocus={(e) => { e.target.select()}}
     />
+  </div>
 )
 
 SearchBox.propTypes = {
