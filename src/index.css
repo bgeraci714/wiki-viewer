@@ -26,7 +26,7 @@ selector {
   @media (max-device-width: 559px) {
     .App-container {
       margin: 0% 0 2% 0;
-      padding: 0 7px 20px 7px; } }
+      padding: 0 .5em 20px .5em; } }
   @media (min-width: 560px) and (max-width: 1023px) {
     .App-container {
       margin: 3% 10% 3% 10%;
@@ -46,20 +46,25 @@ selector {
   border: 2px solid #95a5a6;
   margin-bottom: 20px;
   overflow: hidden;
-  line-height: 0;
   height: 44px;
-  vertical-align: top;
-  padding-left: 15px;
+  vertical-align: middle;
+  padding-left: 14px;
   font-size: 1em;
   color: #2c3e50;
   font-family: Georgia;
-  width: calc(100% - 22px); }
+  width: calc(100% - 1em); }
+  @media (max-device-width: 559px) {
+    .input-form {
+      width: 96%; } }
   .input-form:focus {
     border-color: #2980b9;
     outline: none; }
 
 .input-container {
-  width: 100%; }
+  width: 100%;
+  text-align: center; }
+  .input-container .input-form {
+    display: inline; }
 
 body {
   margin: 0;

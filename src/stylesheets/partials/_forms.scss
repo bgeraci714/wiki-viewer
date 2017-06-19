@@ -1,15 +1,19 @@
 .input-form {
   border: 2px solid $concrete;
   margin-bottom: 20px;
+  //margin-right: 2px;
   overflow: hidden;
-  line-height: 0;
   height: 44px;
-  vertical-align: top;
-  padding-left: 15px;
+  vertical-align: middle;
+  padding-left: 14px;
   font-size: 1em;
   color: $panel-text;
   font-family: $font-family;
-  width: calc(100% - 22px);
+  width: calc(100% - 1em);
+  @include small{
+    width: 96%;
+  }
+
 
   &:focus {
     border-color: $highlight;
@@ -19,4 +23,8 @@
 
 .input-container{
   width: 100%;
+  text-align: center;
+  .input-form {
+    display: inline;
+  }
 }

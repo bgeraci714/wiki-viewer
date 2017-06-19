@@ -8,20 +8,28 @@ const { actions } = results;
 
 //const holdQuery = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&limit=10&namespace=0&format=json`;
 const mapDispatchToProps = (dispatch) => {
+    let CancelToken = axios.CancelToken;
+    let source = CancelToken.source();
     return {
         onChange: (query) => {
-          //console.log(query);
+          
           if (query !== ""){
             axios.get('https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch='
-              + query + '&format=json'
+              + query + '&format=json', {
+                cancelToken: source.token
+              }
             )
             .then((response)  => {
               //console.log(response);
 
               dispatch(actions.updateResults(response.data.query.pages));
-            })
-            .catch((error)=>{
-                console.log("There was an error: " + error);
+            }).catch((thrown) => {
+              if (axios.isCancel(thrown)){
+                console.log('Request canceled', thrown.message);
+              }
+              else {
+                console.log("There was an error: " + thrown);
+              }
             });
           }
           else {
