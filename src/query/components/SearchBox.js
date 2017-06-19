@@ -10,12 +10,13 @@ const { actions } = results;
 const mapDispatchToProps = (dispatch) => {
     return {
         onChange: (query) => {
-          if (query){
-            axios.get('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch='
+          //console.log(query);
+          if (query !== ""){
+            axios.get('https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch='
               + query + '&format=json'
             )
             .then((response)  => {
-              console.log(response.data.query.pages);
+              //console.log(response);
 
               dispatch(actions.updateResults(response.data.query.pages));
             })
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
           else {
             dispatch(actions.updateResults({}));
           }
+
           dispatch(updateQuery(query));
 
         }

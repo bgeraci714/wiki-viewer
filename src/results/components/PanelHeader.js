@@ -6,7 +6,7 @@ import '../../index.css';
 
 const PanelHeader = ({ text, url, thumbnail }) => (
     <div className="panel-header">
-        <img src={thumbnail} alt=""/>
+        <a href={thumbnail}><img src={thumbnail} alt=""/></a>
         <a href={url}>{text}</a>
     </div>
 );

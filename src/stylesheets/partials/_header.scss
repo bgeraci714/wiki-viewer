@@ -4,7 +4,7 @@
   font-weight: bold;
   font-size: 30px;
   color: $header-text;
-  -webkit-text-stroke-width: .25px;
-  -webkit-text-stroke-color: $header-stroke;
+  -webkit-text-stroke-width: $stroke-size;
+  -webkit-text-stroke-color: $stroke-color;
 }
 
