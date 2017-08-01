@@ -1,5 +1,4 @@
 import { Observable }  from 'rxjs';
-import { ajax } from 'rxjs/observable/dom/ajax';
 import axios from 'axios';
 import actions from './actions';
 
@@ -8,12 +7,16 @@ const format = '&format=json';
 
 export default function fetchResultsEpic (action$){
   return action$.ofType('FETCH_RESULTS')
+
     .mergeMap(action =>
       Observable.fromPromise(axios.get(wikiQuery + action.query + format))
         .map((response) => {
-          console.log(response); // this will cause an error
+          
           return actions.updateResults(response.data.query.pages);
         })
+
+        .takeUntil(action$.ofType('FETCH_RESULTS_REJECTED'))
+
         .catch(error => Observable.of({
         	type: 'FETCH_RESULTS_REJECTED',
         	query: ''
