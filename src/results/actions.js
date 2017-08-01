@@ -4,3 +4,10 @@ exports.updateResults = (results) =>{
         results: results
     };
 };
+
+exports.fetchResults = (query) => {
+  return {
+    type: 'FETCH_RESULTS',
+    query: query, 
+  }
+}

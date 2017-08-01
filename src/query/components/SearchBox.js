@@ -10,33 +10,36 @@ const { actions } = results;
 const mapDispatchToProps = (dispatch) => {
     let CancelToken = axios.CancelToken;
     let source = CancelToken.source();
+    // need to figure out if cancelling request midway through would improve responsiveness of input
     return {
         onChange: (query) => {
-          
-          if (query !== ""){
-            axios.get('https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch='
-              + query + '&format=json', {
-                cancelToken: source.token
-              }
-            )
-            .then((response)  => {
-              //console.log(response);
 
-              dispatch(actions.updateResults(response.data.query.pages));
-            }).catch((thrown) => {
-              if (axios.isCancel(thrown)){
-                console.log('Request canceled', thrown.message);
-              }
-              else {
-                console.log("There was an error: " + thrown);
-              }
-            });
-          }
-          else {
-            dispatch(actions.updateResults({}));
-          }
-
+          dispatch(actions.fetchResults(query));
           dispatch(updateQuery(query));
+          // if (query !== ""){
+          //   axios.get('https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch='
+          //     + query + '&format=json', {
+          //       cancelToken: source.token
+          //     }
+          //   )
+          //   .then((response)  => {
+          //     //console.log(response);
+          //
+          //     dispatch(actions.updateResults(response.data.query.pages));
+          //   }).catch((thrown) => {
+          //     if (axios.isCancel(thrown)){
+          //       console.log('Request canceled', thrown.message);
+          //     }
+          //     else {
+          //       console.log("There was an error: " + thrown);
+          //     }
+          //   });
+          // }
+          // else {
+          //   dispatch(actions.updateResults({}));
+          // }
+          //
+          // dispatch(updateQuery(query));
 
         }
     }
